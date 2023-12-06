@@ -13,6 +13,8 @@ struct Node *Insert_value(struct Node *root , int val);
 void InorderTraverse(struct Node * root);
 void  PostorderTraverse( struct Node * root);
 void PreorderTraverse(struct Node * root);
+struct Node * Height_of_Tree(struct Node * root);
+struct Node * freeTree(struct Node * root);
 
 
 
@@ -55,6 +57,7 @@ int main(){
         printf("4.Pre order Traversing\n");
         printf("5.Post order Traversing\n");
         printf("6.Height of Tree\n");
+        printf("7.Exit\n");
         printf("*****------The End------*****\n");
 
         printf("Choose any Option : ");
@@ -89,10 +92,11 @@ int main(){
             break;
 
         case 6:
-
+            printf("Height of Tree: %d\n", Height_of_Tree(root));
             break;
         
         case 7:
+            freeTree(root);
             break;
 
         default:
@@ -168,3 +172,30 @@ void PreorderTraverse(struct Node * root){
     }
 }
 
+
+struct Node * Height_of_Tree(struct Node * root){
+    int height = 0;
+    if (root == NULL) {
+        return 0;
+    } else {
+        int leftHeight = Height_of_Tree(root->left);
+        int rightHeight = Height_of_Tree(root->right);
+
+        if(leftHeight > rightHeight)
+            return leftHeight + 1;
+        else
+            return rightHeight + 1;
+    }
+}
+
+
+struct Node * freeTree(struct Node * root){
+    while (root != NULL){
+        root -> left = freeTree(root -> left);
+        root -> right = freeTree(root -> right);
+        free(root);
+
+        root = NULL;
+        
+    }
+}
