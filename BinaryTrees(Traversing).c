@@ -27,6 +27,7 @@ struct Node * freeTree(struct Node * root);
            20  40 60   80
 */
 
+// static Main
 // int main(){
 //     struct Node *root = NULL;
 //     root = Insert_value(root, 50);
@@ -44,7 +45,7 @@ struct Node * freeTree(struct Node * root);
 //     PreorderTraverse(root);
 // }
 
-
+//Dynamic Main
 int main(){
     struct Node * root = NULL;
     int option;
